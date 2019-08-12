@@ -1,0 +1,85 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>EasySQL</name>
+    </assembly>
+    <members>
+        <member name="M:EasySQL.SQL.#ctor(System.String,System.String,System.String,System.String,System.String)">
+            <summary>
+            Constructor with SSL requirement
+            </summary>
+            <param name="pUser">MySQL Username</param>
+            <param name="pPass">MySQL Password</param>
+            <param name="pDB">MySQL Database</param>
+            <param name="pServer">MySQL Host</param>
+            <param name="pSSL">MySQL SSL Connection Type</param>
+        </member>
+        <member name="M:EasySQL.SQL.#ctor(System.String,System.String,System.String,System.String)">
+            <summary>
+            Constructor without SSL requirement
+            </summary>
+            <param name="pUser">MySQL Username</param>
+            <param name="pPass">MySQL Password</param>
+            <param name="pDB">MySQL Database</param>
+            <param name="pServer">MySQL Host</param>
+        </member>
+        <member name="M:EasySQL.SQL.FormulateConnectionString">
+            <summary>
+            Formulate string to create connection from constructor
+            </summary>
+        </member>
+        <member name="M:EasySQL.SQL.CreateConnection">
+            <summary>
+            Create new connection
+            </summary>
+            <returns>bool with exec result</returns>
+        </member>
+        <member name="M:EasySQL.SQL.getConnectionState">
+            <summary>
+            Check what is the current state of the connection
+            </summary>
+            <returns>ConnectionState param</returns>
+        </member>
+        <member name="M:EasySQL.SQL.Insert(System.String,System.Collections.Generic.List{System.String},System.Collections.Generic.List{System.String})">
+            <summary>
+            Insert data into your DB
+            </summary>
+            <param name="into">Table that will receive new data</param>
+            <param name="keys">Row keys names</param>
+            <param name="values">Row keys values</param>
+            <returns>bool with exec result</returns>
+        </member>
+        <member name="M:EasySQL.SQL.Update(System.String,System.Collections.Generic.List{System.String},System.Collections.Generic.List{System.String},System.String)">
+            <summary>
+            Update content in DB
+            </summary>
+            <param name="into">Table that will receive the updates</param>
+            <param name="keys">Rows names of the table</param>
+            <param name="values">Rows values of the table</param>
+            <param name="where">Condition for update</param>
+            <returns>bool with exec result</returns>
+        </member>
+        <member name="M:EasySQL.SQL.Delete(System.String,System.String)">
+            <summary>
+            Delete content from DB
+            </summary>
+            <param name="from">Table that will delete content</param>
+            <param name="where">Condition to delete the contant</param>
+            <returns>bool with exec result</returns>
+        </member>
+        <member name="M:EasySQL.SQL.Get(System.String,System.String,System.String)">
+            <summary>
+            Get content from your DB using SELECT parameter
+            </summary>
+            <param name="rows">Which rows you desire in your list (Default: *)</param>
+            <param name="from">What table you desire that select make the search?</param>
+            <param name="where">Define the condition of use.</param>
+            <returns>List with all data from query</returns>
+        </member>
+        <member name="M:EasySQL.SQL.Dispose">
+            <summary>
+            Dispose connection, use at end of your connection request!
+            </summary>
+        </member>
+    </members>
+</doc>

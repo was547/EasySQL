@@ -1,0 +1,21 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+    <Authors>Washington Farias</Authors>
+    <Description>EasySQL is a C# Wrapper that allow you to manage MySQL easily!</Description>
+    <Copyright>Apache License 2.0</Copyright>
+    <PackageProjectUrl>https://devwoz.online</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/was547/EasySQL</RepositoryUrl>
+    <RepositoryType>git</RepositoryType>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
+    <DocumentationFile>C:\Users\Administrator\source\repos\EasySQL\EasySQL\EasySQL.xml</DocumentationFile>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="MySql.Data" Version="8.0.17" />
+  </ItemGroup>
+
+</Project>
