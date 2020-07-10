@@ -14,7 +14,7 @@ EasySQL is a C# Wrapper that allow you to manage MySQL easily.
 
 Use NuGet to install or use by this command:
 
-`Install-Package EasyMySQL -Version 1.0.0`
+`Install-Package EasyMySQL -Version 1.1.0`
 
 ##### How to use
 
@@ -37,8 +37,8 @@ if(conn)
 
 ###### Inserting data:
 ```
-List<string> keys = { "name", "country" };
-List<string> values = { "Washington", "Brazil" };
+List<string> keys = { "name", "number" };
+List<object> values = { "Washington", 17 };
 
 bool insertValues = myConnection.Insert("myTable", keys, values);
 
@@ -50,8 +50,8 @@ if(insertValues)
 
 ###### Updating data:
 ```
-List<string> keys = { "country" };
-List<string> values = { "Spain" };
+List<string> keys = { "number" };
+List<object> values = { 96 };
 
 bool updateValues = myConnection.Update("myTable", keys, values, string.Format("name='{0}'", "Washington"));
 
@@ -73,7 +73,7 @@ if(deleteValues)
 
 ###### Querying data
 ```
-var Result = myConnection.Get("*", "myTable", string.Format("country='{0}'", "Spain"));
+var Result = myConnection.Get("*", "myTable", "number=96");
 
 if(Result.Count != 0)
 {
@@ -83,7 +83,7 @@ if(Result.Count != 0)
         var nameColumn = row.GetValue(0).ToString();
         var countryColumn = row.GetValue(1).ToString();
         
-        Console.WriteLine(string.Format("Name: {0} Country: {1}", nameColumn, countryColumn));
+        Console.WriteLine(string.Format("Name: {0} Number: {1}", nameColumn, countryColumn));
     }
 }
 ```
@@ -93,11 +93,9 @@ At the end of script remember to use the Dispose function to finish the connecti
 `myConnection.Dispose();`
 
 ### TODO
-- Make the parameters accept all kind of data-types (Not only strings)
 - Make it faster
 - Create best way to use conditional
 - Best security with conditionals, to block possible SQL Injection
-
 
 
 Best regards, Washington

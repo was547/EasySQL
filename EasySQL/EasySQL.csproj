@@ -5,13 +5,16 @@
     <Authors>Washington Farias</Authors>
     <Description>EasySQL is a C# Wrapper that allow you to manage MySQL easily!</Description>
     <Copyright>Apache License 2.0</Copyright>
-    <PackageProjectUrl>https://devwoz.online</PackageProjectUrl>
+    <PackageProjectUrl>https://vayawoz.es</PackageProjectUrl>
     <RepositoryUrl>https://github.com/was547/EasySQL</RepositoryUrl>
     <RepositoryType>git</RepositoryType>
+    <Version>1.1.0</Version>
+    <AssemblyVersion>1.1.0.0</AssemblyVersion>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <RunAnalyzersDuringBuild>false</RunAnalyzersDuringBuild>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
-    <DocumentationFile>C:\Users\Administrator\source\repos\EasySQL\EasySQL\EasySQL.xml</DocumentationFile>
   </PropertyGroup>
 
   <ItemGroup>

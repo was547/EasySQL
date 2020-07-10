@@ -2,20 +2,21 @@
 using System;
 using System.Collections.Generic;
 using System.Data;
+using System.Runtime.InteropServices;
 
 namespace EasySQL
 {
-    public class SQL
+    public class SQL : ISQL
     {
-        private MySqlConnection connection;
-        private MySqlCommand command;
+        private MySqlConnection _conn;
+        private MySqlCommand _cmd;
 
         //Connection String required vars
-        private readonly string Username;
-        private readonly string Password;
-        private readonly string Database;
-        private readonly string Server;
-        private readonly string SSLMode;
+        private string _username;
+        private string _password;
+        private string _database;
+        private string _server;
+        private string _sslmode;
 
         private string connectionString = string.Empty;
         private bool readToConnect = false;
@@ -32,11 +33,11 @@ namespace EasySQL
         {
             this.readToConnect = false;
 
-            this.Username = pUser;
-            this.Password = pPass;
-            this.Database = pDB;
-            this.Server = pServer;
-            this.SSLMode = pSSL;
+            _username = pUser;
+            _password = pPass;
+            _database = pDB;
+            _server = pServer;
+            _sslmode = pSSL;
 
             FormulateConnectionString();
         }
@@ -52,11 +53,11 @@ namespace EasySQL
         {
             this.readToConnect = false;
 
-            this.Username = pUser;
-            this.Password = pPass;
-            this.Database = pDB;
-            this.Server = pServer;
-            this.SSLMode = "none";
+            _username = pUser;
+            _password = pPass;
+            _database = pDB;
+            _server = pServer;
+            _sslmode = "none";
 
             FormulateConnectionString();
         }
@@ -68,14 +69,16 @@ namespace EasySQL
         {
             string cs = "";
 
-            cs += string.Format("server={0};", this.Server);
-            cs += string.Format("userid={0};", this.Username);
-            cs += string.Format("password={0};", this.Password);
-            cs += string.Format("database={0};", this.Database);
-            cs += string.Format("SslMode={0};", this.SSLMode);
+            cs += string.Format("server={0};", _server);
+            cs += string.Format("userid={0};", _username);
+            cs += string.Format("password={0};", _password);
+            cs += string.Format("database={0};", _database);
+            cs += string.Format("SslMode={0};", _sslmode);
 
-            this.connectionString = cs;
-            this.readToConnect = true;
+            connectionString = cs;
+
+            readToConnect = true;
+
             return;
         }
 
@@ -91,15 +94,17 @@ namespace EasySQL
 
             try
             {
-                this.connection = new MySqlConnection(this.connectionString);
+                _conn = new MySqlConnection(this.connectionString);
 
-                this.connection.Open();
+                _conn.Open();
+
+                return true;
             }
             catch
             {
                 return false;
             }
-            return true;
+
         }
 
         /// <summary>
@@ -108,7 +113,7 @@ namespace EasySQL
         /// <returns>ConnectionState param</returns>
         public ConnectionState getConnectionState()
         {
-            return this.connection.State;
+            return _conn.State;
         }
 
 
@@ -119,10 +124,12 @@ namespace EasySQL
         /// <param name="keys">Row keys names</param>
         /// <param name="values">Row keys values</param>
         /// <returns>bool with exec result</returns>
-        public bool Insert(string into, List<string> keys, List<string> values)
+        public bool Insert(string into, List<string> keys, List<object> values)
         {
-            if (this.getConnectionState() != ConnectionState.Open) return false;
+            if (getConnectionState() != ConnectionState.Open) return false;
+
             if (keys.Count != values.Count) return false;
+
             if (string.IsNullOrEmpty(into)) return false;
 
             string sf = "";
@@ -151,7 +158,10 @@ namespace EasySQL
             //Add values to string
             for (int x = 0; x < i; x++)
             {
-                sf += string.Format("'{0}'", values[x]);
+                if (values[x].GetType() == typeof(string))
+                    sf += string.Format("'{0}'", values[x].ToString());
+                else
+                    sf += string.Format("{0}", values[x].ToString());
 
                 if ((x + 1) == i)
                 {
@@ -163,14 +173,11 @@ namespace EasySQL
                 }
             }
 
-            //Execute SQL String
-            Console.WriteLine(String.Format("ExecuteQuery (INSERT) = {0}", sf));
-
             try
             {
-                this.command = new MySqlCommand(sf, this.connection);
+                _cmd = new MySqlCommand(sf, _conn);
 
-                this.command.ExecuteNonQuery();
+                _cmd.ExecuteNonQuery();
             }
             catch
             {
@@ -178,8 +185,9 @@ namespace EasySQL
             }
             finally
             {
-                this.command.Dispose();
+                _cmd.Dispose();
             }
+
             return true;
         }
 
@@ -192,8 +200,10 @@ namespace EasySQL
         /// <param name="values">Rows values of the table</param>
         /// <param name="where">Condition for update</param>
         /// <returns>bool with exec result</returns>
-        public bool Update(string into, List<string> keys, List<string> values, string where)
+        public bool Update(string into, List<string> keys, List<object> values, string where)
         {
+            var test = new List<object> { "aaaa", 1234 };
+
             if (this.getConnectionState() != ConnectionState.Open) return false;
             if (keys.Count != values.Count) return false;
             if (string.IsNullOrEmpty(into)) return false;
@@ -208,7 +218,10 @@ namespace EasySQL
             // Add Keys and values into string
             foreach (var keyValue in keys)
             {
-                sf += string.Format(" '{0}'='{1}'", keyValue, values[countValues]);
+                if (values[countValues].GetType() == typeof(string))
+                    sf += string.Format(" '{0}'='{1}'", keyValue, values[countValues].ToString());
+                else
+                    sf += string.Format(" '{0}'={1}", keyValue, values[countValues].ToString());
 
                 if (countValues <= values.Count)
                 {
@@ -219,24 +232,18 @@ namespace EasySQL
             }
 
             sf += " WHERE " + where;
-            // Execute SQL string
-            Console.WriteLine(string.Format("ExecuteQuery (UPDATE) = {0} ", sf));
 
             try
             {
-                this.command = new MySqlCommand(sf, this.connection);
+                _cmd = new MySqlCommand(sf, _conn);
 
-                this.command.ExecuteNonQuery();
+                _cmd.ExecuteNonQuery();
 
-                this.command.Dispose();
+                _cmd.Dispose();
             }
             catch
             {
                 return false;
-            }
-            finally
-            {
-                this.command.Dispose();
             }
 
             return true;
@@ -263,11 +270,11 @@ namespace EasySQL
             // Execute SQL string
             try
             {
-                this.command = new MySqlCommand(sf, this.connection);
+                _cmd = new MySqlCommand(sf, _conn);
 
-                this.command.ExecuteNonQuery();
+                _cmd.ExecuteNonQuery();
 
-                this.command.Dispose();
+                _cmd.Dispose();
             }
             catch
             {
@@ -275,7 +282,7 @@ namespace EasySQL
             }
             finally
             {
-                this.command.Dispose();
+                _cmd.Dispose();
             }
 
             return true;
@@ -303,9 +310,9 @@ namespace EasySQL
 
             try
             {
-                this.command = new MySqlCommand(sf, this.connection);
+                _cmd = new MySqlCommand(sf, _conn);
 
-                using (MySqlDataReader reader = this.command.ExecuteReader())
+                using (MySqlDataReader reader = _cmd.ExecuteReader())
                 {
                     while (reader.Read())
                     {
@@ -329,7 +336,7 @@ namespace EasySQL
             }
             finally
             {
-                this.command.Dispose();
+                _cmd.Dispose();
             }
         }
 
@@ -338,7 +345,7 @@ namespace EasySQL
         /// </summary>
         public void Dispose()
         {
-            this.connection.Dispose();
+            _conn.Dispose();
         }
     }
 }

@@ -8,3 +8,12 @@ C:\Users\Administrator\source\repos\EasySQL\EasySQL\obj\Release\netstandard2.0\E
 C:\Users\Administrator\source\repos\EasySQL\EasySQL\obj\Release\netstandard2.0\EasySQL.AssemblyInfo.cs
 C:\Users\Administrator\source\repos\EasySQL\EasySQL\obj\Release\netstandard2.0\EasySQL.dll
 C:\Users\Administrator\source\repos\EasySQL\EasySQL\obj\Release\netstandard2.0\EasySQL.pdb
+D:\GitHub\EasySQL\EasySQL\bin\Release\netstandard2.0\EasySQL.deps.json
+D:\GitHub\EasySQL\EasySQL\bin\Release\netstandard2.0\EasySQL.dll
+D:\GitHub\EasySQL\EasySQL\bin\Release\netstandard2.0\EasySQL.pdb
+D:\GitHub\EasySQL\EasySQL\obj\Release\netstandard2.0\EasySQL.csprojAssemblyReference.cache
+D:\GitHub\EasySQL\EasySQL\obj\Release\netstandard2.0\EasySQL.csproj.CoreCompileInputs.cache
+D:\GitHub\EasySQL\EasySQL\obj\Release\netstandard2.0\EasySQL.AssemblyInfoInputs.cache
+D:\GitHub\EasySQL\EasySQL\obj\Release\netstandard2.0\EasySQL.AssemblyInfo.cs
+D:\GitHub\EasySQL\EasySQL\obj\Release\netstandard2.0\EasySQL.dll
+D:\GitHub\EasySQL\EasySQL\obj\Release\netstandard2.0\EasySQL.pdb

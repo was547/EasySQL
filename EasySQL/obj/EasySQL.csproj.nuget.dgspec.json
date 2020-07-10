@@ -1,26 +1,21 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Administrator\\source\\repos\\EasySQL\\EasySQL\\EasySQL.csproj": {}
+    "D:\\GitHub\\EasySQL\\EasySQL\\EasySQL.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Administrator\\source\\repos\\EasySQL\\EasySQL\\EasySQL.csproj": {
-      "version": "1.0.0",
+    "D:\\GitHub\\EasySQL\\EasySQL\\EasySQL.csproj": {
+      "version": "1.1.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Administrator\\source\\repos\\EasySQL\\EasySQL\\EasySQL.csproj",
+        "projectUniqueName": "D:\\GitHub\\EasySQL\\EasySQL\\EasySQL.csproj",
         "projectName": "EasySQL",
-        "projectPath": "C:\\Users\\Administrator\\source\\repos\\EasySQL\\EasySQL\\EasySQL.csproj",
-        "packagesPath": "C:\\Users\\Administrator\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Administrator\\source\\repos\\EasySQL\\EasySQL\\obj\\",
+        "projectPath": "D:\\GitHub\\EasySQL\\EasySQL\\EasySQL.csproj",
+        "packagesPath": "C:\\Users\\maste\\.nuget\\packages\\",
+        "outputPath": "D:\\GitHub\\EasySQL\\EasySQL\\obj\\",
         "projectStyle": "PackageReference",
-        "fallbackFolders": [
-          "C:\\ProgramData\\Xamarin\\NuGet\\",
-          "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
-        ],
         "configFilePaths": [
-          "C:\\Users\\Administrator\\AppData\\Roaming\\NuGet\\NuGet.Config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Xamarin.Offline.config"
+          "C:\\Users\\maste\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
           "netstandard2.0"
@@ -55,10 +50,16 @@
             }
           },
           "imports": [
-            "net461"
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48"
           ],
           "assetTargetFallback": true,
-          "warn": true
+          "warn": true,
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.201\\RuntimeIdentifierGraph.json"
         }
       }
     }

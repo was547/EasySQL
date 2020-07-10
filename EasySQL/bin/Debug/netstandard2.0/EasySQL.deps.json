@@ -1,13 +1,13 @@
 {
   "runtimeTarget": {
     "name": ".NETStandard,Version=v2.0/",
-    "signature": "4906262de01acc84adbc31bb6d8fca86bc809c9c"
+    "signature": ""
   },
   "compilationOptions": {},
   "targets": {
     ".NETStandard,Version=v2.0": {},
     ".NETStandard,Version=v2.0/": {
-      "EasySQL/1.0.0": {
+      "EasySQL/1.1.0": {
         "dependencies": {
           "MySql.Data": "8.0.17",
           "NETStandard.Library": "2.0.3"
@@ -781,7 +781,7 @@
     }
   },
   "libraries": {
-    "EasySQL/1.0.0": {
+    "EasySQL/1.1.0": {
       "type": "project",
       "serviceable": false,
       "sha512": ""
