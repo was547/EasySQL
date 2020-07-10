@@ -12,9 +12,7 @@ EasySQL is a C# Wrapper that allow you to manage MySQL easily.
 
 # How to install
 
-Use NuGet to install or use by this command:
-
-`Install-Package EasyMySQL -Version 1.1.0`
+Compile this source-code and add as reference into your project.
 
 ##### How to use
 
