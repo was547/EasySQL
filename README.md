@@ -1,5 +1,7 @@
 # EasySQL - C# Wrapper
 
+** DO NOT USE THIS CODE IN PRODUCTION MODE, THIS CODE IS ONLY FOR TEST PURPOSES! **
+
 EasySQL is a C# Wrapper that allow you to manage MySQL easily.
 
   - Easy to understand.
