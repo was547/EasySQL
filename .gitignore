@@ -1,3 +1,7 @@
 
 .vs/EasySQL/DesignTimeBuild/.dtbcache.v2
 .vs/EasySQL/v16/.suo
+*.vsidx
+.vs/EasySQL/v17/.suo
+*.nupkg
+*.editorconfig

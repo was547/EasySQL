@@ -12,5 +12,9 @@ namespace EasySQL
         ConnectionState getConnectionState();
         bool Insert(string into, List<string> keys, List<object> values);
         bool Update(string into, List<string> keys, List<object> values, string where);
+        int GetLastInsertIndex();
+        bool UpdateOrInsert(string tableName, List<string> keys, List<object> values, string where);
+        bool RecordExists(string tableName, string where);
+        bool CreateTable(string tableName, List<ColumnDefinition> columnDefinitions);
     }
 }
